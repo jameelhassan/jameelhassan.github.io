@@ -1,0 +1,80 @@
+
+<html>
+  <head>
+    <link rel="canonical" href="https://jameelhassan.github.io/resources/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-15776498-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-15776498-2');
+    </script>
+
+    <title>Jameel Hassan : Resources</title>
+
+    <style type='text/css'>
+      .highlighted {
+        background-color: #ADD8E6;
+      }
+    </style>
+    <style type="text/css">
+      
+      a:hover{background-color:#aaaaFF;}
+      a:focus{background-color:#aaaaFF;}
+      li{margin: 5px 0;}
+    </style>
+      <style>
+        li{
+          margin: 10px 0;
+        }
+      </style>
+
+    <script src="../js/mirrorFooter.js"></script>
+
+    <script>
+        function startup(){
+            mirrorFooter();
+            var line=window.location.hash.substr(1);
+            highlight(line)
+        }
+
+        function highlight(pp){
+            try {
+              document.getElementsByTagName("li")[pp].setAttribute("class", "highlighted");
+            }
+            catch(err){
+              document.getElementsByTagName("h3")[pp].setAttribute("class", "highlighted");
+            }
+
+        }
+
+
+        
+    </script>
+
+  </head>
+  
+  <body onload="javascript:startup()">
+    <h3><a href="../">Jameel Hassan</a> : Resources</h3><hr>
+
+    This page contains links to different online resources in no particular order.
+
+    <h3 id="UG">Undergraduate University of Peradeniya Students</h3>
+
+    <ul>
+        <li>
+          Using Github for documentation. Refer this <a href="https://www.youtube.com/watch?v=L33-W2jyYuY">video</a> and 
+          <a href="https://docs.google.com/presentation/d/1Bye8x62IZVj-PgOua-FqrPxkIUXmDDG2dUbIQloyVqg/edit?usp=sharing">presentation</a> by 
+          <a href="https://gihan.me">Gihan</a> from Computer Engineering E14.
+        </li>
+        <li>
+          Guidelines and FAQ regarding the choice of Electrical & Electronic Engineering at UOP. [<a href="docs/EEE_guide.pdf">See PDF</a>] <br>
+          <i> If you disagree with any of this please let me know.</i>
+        </li>
+
+
+    <div id="mirror-footer"></div>
+  </body>
+</html>
