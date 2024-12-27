@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta charset="utf-8">
+    <meta property="og:title" content="PromptAlign" />
+    <meta property="og:description" content="Align Your Prompts: Test-Time Prompting with Distribution Alignment for Zero-Shot Generalization" />
+    <meta property="og:url" content="https://jameelhassan.github.io/promptalign/" />
+<!--     <meta property="og:image" content="https://jameelhassan.github.io/promptalign/static/images/preview.png" /> -->
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="628" />
+    <meta name="description"
+        content="" />
+    <meta name="keywords"
+        content="Prompt Learning, Vision-Language models, Foundation models, Test-Time-Adaptation, Distribution Alignment" />
+    <meta name="viewport" content="initial-scale=1" />
+
+
+    <title>PromptAlign</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet" href="https://use.typekit.net/iag3ven.css">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/themes/prism-coy.min.css"/> -->
+    <link rel="stylesheet" href="./static/css/prism.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/prismjs-bibtex@2.0.1/prism-bibtex.min.js">
+    </script>
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔎</text></svg>">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+
+    <!-- mathjax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <p style="padding: 20px;" />
+                        <h1 class="title is-1 publication-title">
+                            <span id="main-title">
+                                Align Your Prompts: Test-Time Prompting with Distribution Alignment for Zero-Shot Generalization
+                            </span>
+                        </h1>
+                        <div class="is-size-5 publication-authors">
+                            <!-- TODO: FIX -->
+                            <span class="author-block">
+                                <a href="https://jameelhassan.github.io" target="_blank">Jameel Hassan<sup>*,</sup><sup>1</sup></a>
+                            </span>
+                            &nbsp;
+                            &nbsp;
+                            <span class="author-block">
+                                <a href="https://hananshafi.github.io/" target="_blank">Hanan Gani<sup>*,</sup><sup>1</sup></a>
+                            </span>
+                            &nbsp;
+                            &nbsp;
+                            <span class="author-block">
+                                <a href="" target="_blank">Noor Hussein<sup>1</sup></a>
+                            </span>
+                            &nbsp;
+                            &nbsp;
+                            <span class="author-block">
+                                <a href="https://muzairkhattak.github.io/" target="_blank">Uzair Khattak<sup>1</sup></a>
+                            </span>
+                            &nbsp;
+                            &nbsp;
+                            <br>
+                            <span class="author-block">
+                                <a href="https://muzammal-naseer.netlify.app/" target="_blank">Muzammal Naseer<sup>1</sup></a>
+                            </span>
+                            &nbsp;
+                            &nbsp;
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?user=zvaeYnUAAAAJ&hl=en" target="_blank">Fahad Khan<sup>1,</sup><sup>2</sup></a>
+                            </span>
+                            &nbsp;
+                            &nbsp;
+                            <span class="author-block">
+                                <a href="https://scholar.google.com.pk/citations?user=M59O9lkAAAAJ&hl=en" target="_blank">Salman Khan<sup>1,</sup><sup>3</sup></a>
+                            </span>
+                        </div>
+                        <p style="padding: 0.25rem;" />
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block"><sup>1</sup>Mohamed Bin Zayed University of Artificial Intelligence</span> <br>
+                            &nbsp;
+                            <span class="author-block"><sup>2</sup>Linköping University</span>
+                            &nbsp;
+                            <span class="author-block"><sup>3</sup>Australian National University</span>
+                            <br>
+                            <span class="author-block">NeurIPS 2023</span>
+                            <!-- <br style="line-height: 2px" /> -->
+                            <!-- <span class="author-block" style="font-size: 0.7em; font-style: italic;"><sup>*</sup>Equal
+                                contribution</span> -->
+
+                        </div>
+
+                        <p style="padding: 20px;" />
+
+                        <div class="buttons is-centered">
+                            <button class="external-link button is-medium is-ghost publication-links is-rounded">
+                                <a href="https://arxiv.org/abs/2311.01459" target="_blank"
+                                    style="text-decoration:none;">
+                                    <span class="icon is-small">
+                                        <i class="ai ai-arxiv"></i>
+                                    </span>
+                                    <span>arXiv</span>
+                                </a>
+                            </button>
+                            <button class="external-link button is-medium is-ghost publication-links is-rounded">
+                                <a href="./static/docs/AlignYourPrompts.pdf" target="_blank">
+                                    <span class="icon is-small">
+                                        <i class="fas fa-file-pdf"></i>
+                                    </span>
+                                    <span>pdf</span>
+                                </a>
+                            </button>
+                            <button class="external-link button is-medium is-ghost publication-links is-rounded">
+                                <a href="https://github.com/jameelhassan/PromptAlign" target="_blank">
+                                    <span class="icon is-small">
+                                        <i class="fab fa-github"></i>
+                                    </span>
+                                    <span>code</span>
+                                </a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- hack to pull the below up vertically -->
+    <span style="display:block; margin-top:-1.75em;"/>
+
+        <!-- Method Overview -->
+    <section class="section" id="method-overview">
+        <div class="container is-max-widescreen">
+            <div class="columns is-centered has-text-centered">
+                <div class="column" style="border-radius: 10px; background-color: rgb(245,245,245)">
+                    <h2 class="title is-3">
+                        <span class="method-name">"Prompt Align"</span>
+                    </h2>
+                    <p style="padding: 10px;" />
+                    <div id="method-overview-wrapper">
+                        <img src="./static/images/conceptdiagram.png" alt="PromptAlign Concept."
+                            class="method-overview-full-img  method-overview" draggable="false" />
+                    </div>
+                            <p style="padding: 10px;" />
+                        <div class="method-overview-text has-text-justified">
+                            <p>
+                                PromptAlign matches the distribution statistics <strong> μ<sub>𝑙</sub>(τ ; 𝐩) </strong>, 
+                                <strong> σ²<sub>𝑙</sub>(τ ; 𝐩) </strong>, obtained from multiple augmented views of a single test sample, 
+                                with the source data distribution statistics <strong>μ̂<sub>𝑙</sub></strong>, <strong>σ̂²<sub>𝑙</sub></strong>. 
+                                This effectively brings the test sample closer to the distribution of the source data, where the domain shift 
+                                is denoted by <span style="color: purple; font-size: 1em;">▲<sub>1</sub></span> → 
+                                <span style="color: purple; font-size: 1em;">▲<sub>2</sub></span>. 
+                                <strong>τ</strong> denotes the distribution of the test sample, <strong>𝐩</strong> represents the prompts that are 
+                                updated, and <strong>𝑙</strong> refers to the vision-backbone layers. <strong>(b)</strong> Owing to the distribution 
+                                matching via prompts, PromptAlign surpasses the existing state-of-the-art prompt learning approaches 
+                                on 8 out of 10 datasets in cross-dataset generalization benchmarks. 
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--/ Method Overview -->
+
+    <!-- <p style="padding: 10px;" /> -->
+
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-three-quarters">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            The promising zero-shot generalization of vision-language models such as CLIP
+                            has led to their adoption using prompt learning for numerous downstream tasks.
+                            Previous works have shown test-time prompt tuning using entropy minimization
+                            to adapt text prompts for unseen domains. While effective, this overlooks the key
+                            cause for performance degradation to unseen domains – distribution shift. In this
+                            work, we explicitly handle this problem by aligning the out-of-distribution (OOD)
+                            test sample statistics to those of the source data using prompt tuning. We use a
+                            single test sample to adapt multi-modal prompts at test time by minimizing the
+                            feature distribution shift to bridge the gap in the test domain. Evaluating against the
+                            domain generalization benchmark, our method improves zero-shot top-1 accuracy
+                            beyond existing prompt-learning techniques, with a 3.08% improvement over the
+                            baseline MaPLe. In cross-dataset generalization with unseen categories across 10
+                            datasets, our method improves by 1.82% compared to the existing state-of-the-art.
+                            Our source code and models will be publicly released.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Abstract. -->
+
+    <p style="padding: 15px;" />
+
+    <!-- Derivation. -->
+    <section class="section">
+        <div class="container is-max-desktop">
+                <div class="columns is-centered has-text-centered">
+                    <h2 class="title is-3">PromptAlign Design</h2>
+                 </div>
+                <div class="columns is-centered has-text-centered">
+                    <div class="column is-three-fourths">
+                        <figure>
+                            <img src="./static/images/arch.png" alt="PromptAlign design" id="design-image"
+                                draggable="false" />
+                            <figcaption>
+                                Architecture and design of PromptAlign.
+                            </figcaption>
+                        </figure>
+                    </div>
+                </div>
+            <p style="padding: 20px;" />
+                
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-three-quarters">
+                    <div class="content has-text-justified">
+                        <p class="equation-text">
+                            PromptAlign explicitly aligns the token disctribution statistics for each test sample with that of the source data
+                            statistics. The source data statistics are computed using ImageNet as a proxy dataset, given by: 
+                        </p>
+                        <p class="equation">
+                            \begin{align}
+                                 {\hat{\mu}}_{l} =  {\mu}_{l}(\mathcal{D}, {\theta}_v)  \quad  \text{and} \quad  {\hat{\sigma}^2}_{l} =  {\sigma}^2_{l}(\mathcal{D}, {\theta}_v) \quad
+                                \label{eq:source-stats}
+                            \end{align}
+                        </p>
+                        
+                        <p class="equation-text">
+                            At test time, multiple augmented views of the sample are passed through the CLIP model and the token 
+                            distribution statistics -- mean and variance -- are computed as in Eq.\ref{eq:test-stats} and Eq.\ref{eq:test-stats2}, where 
+                            \(\bigg({{X~}^p}_{l, \mathrm{x}}\) is the prompt token embeddings at layer 𝑙.
+                        </p>
+                        <p class="equation">
+                            \begin{align}
+                                {\mu}_{l}(\mathcal{T} ; {p}) = \frac{1}{N_k} \sum_{\mathrm{x} \in \mathcal{H}(X)}  {{X ~}^p}_{l, \mathrm{x}}
+                                \label{eq:test-stats}
+                            \end{align}
+                        </p>
+
+                        <p class="equation">
+                            \begin{align}
+                                {\sigma^2}_{l}(\mathcal{T} ; {p}) = \frac{1}{N_k} \sum_{\mathrm{x} \in \mathcal{H}(X)} \bigg({{X ~}^p}_{l, \mathrm{x}} - {\mu}_{l}(\mathcal{T} ; {p})\bigg)^2 ,
+                                \label{eq:test-stats2}
+                            \end{align}
+                        </p>
+                        
+                        <p class="equation-text">
+                            The distribution alignment loss is computed between the offline computed source data statistics and the test sample 
+                            statistics across the transformer layers for all tokens as in Eq.\ref{eq:align-loss}. The resulting alignment loss from the 
+                            distribution shift is combined with the entropy loss to update the multi-modal prompts. For each sample, a single 
+                            update of the prompts are done, and it is reset to the original prompts for the next sample.
+                        </p>
+                        <p class="equation">
+                            \begin{align}
+                                \mathcal{L}_{\text{align}} = \frac{1}{L}\sum_{l=1}^{L} \bigg( \|  {\mu}_{l}(\mathcal{T} ; {p}) - {\hat{\mu}}_{l} \|_1  +  \| {\sigma^2}_{l}(\mathcal{T} ; {p}) -   {\hat{\sigma}^2}_{l}\|_1 \bigg).
+                                \label{eq:align-loss}
+                            \end{align}
+                        </p>
+                        
+                    </div>
+                </div>
+            </div> 
+        
+        </div>
+    </section>
+
+    <p style="padding: 15px;" />
+    <section class="section">
+        <!-- Results -->
+        <div class="container is-max-desktop">
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-three-quarters">
+                    <h2 class="title is-3">Effect of Distibution Alignment</h2>
+                    <div class="content has-text-justified">
+                        <p>
+                            We evaluate our distribution aloignment strategy  <span class="method-name">PromptAlign</span> on domnain generalization
+                            settings and cross-dataset settings. For domain generalization, we evaluate on the ImageNet variants and also on the 
+                            recently released PUG dataset Imagenet variants. 
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p style="padding: 20px;" />
+        <div class="is-centered has-text-centered">
+            <div class="table-container is-max-desktop">
+                <table style="width:100%">
+                    <caption>
+                        Effect of token distribution alignment strategy for domain generalization.
+                    </caption>
+                    
+                    <small style="text-align:center; display:block;"> </small>
+                    
+                    <tr>
+                        <th></th>
+                        <th>Imagenet V2</th>
+                        <th>Imagenet Sketch</th>
+                        <th>Imagenet A</th>
+                        <th>Imagenet R</th>
+                        <th>OOD Avg.</th>
+                    </tr>
+                        <td colspan="6" style="border-bottom: 1px solid #ddd;"></td>
+                    <tr>
+                        <td>MaPLe</td>
+                        <td>64.07</td>
+                        <td>49.15</td>
+                        <td>50.90</td>
+                        <td>76.98</td>
+                        <td>60.28</td>
+                    </tr>
+                    <tr>
+                        <td>MaPLe+TPT</td>
+                        <td>64.87</td>
+                        <td>48.16</td>
+                        <td>58.08</td>
+                        <td>78.12</td>
+                        <td>62.31</td>
+                    </tr>
+                    <tr style="background-color:#e6e6e6">
+                        <td>PromptAlign</td>
+                        <td><b>65.29</b></td>
+                        <td><b>50.23</b></td>
+                        <td><b>59.37</b></td>
+                        <td><b>79.33</b></td>
+                        <td><b>63.55</b></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <p style="padding: 20px;" />
+        <div class="is-centered has-text-centered">
+            <div class="table-container is-max-desktop">
+                <table style="width:100%">
+                    <caption">
+                        Comparison of PromptAlign in cross-dataset evaluation.
+                    </caption>
+                    <small style="text-align:center; display:block;"> </small>
+                    <tr>
+                        <th></th>
+                        <th>Caltech</th>
+                        <th>Pets</th>
+                        <th>Cars</th>
+                        <th>Flowers</th>
+                        <th>Food101</th>
+                        <th>Aircraft</th>
+                        <th>SUN397</th>
+                        <th>DTD</th>
+                        <th>EuroSAT</th>
+                        <th>UCF101</th>
+                        <th>Average</th>
+                    </tr>
+                        <td colspan="12" style="border-bottom: 1px solid #ddd;"></td>
+                    <tr>
+                        <td>CLIP </td>
+                        <td>93.35</td>
+                        <td>88.25</td>
+                        <td>65.48</td>
+                        <td>67.44</td>
+                        <td>83.65</td>
+                        <td>23.67</td>
+                        <td>62.59</td>
+                        <td>44.27</td>
+                        <td>42.01</td>
+                        <td>65.13</td>
+                        <td>63.58</td>
+                    </tr>
+                    <tr>
+                        <td>CLIP+TPT </td>
+                        <td><strong>94.16</strong></td>
+                        <td>87.79</td>
+                        <td>66.87</td>
+                        <td>68.98</td>
+                        <td>84.67</td>
+                        <td>24.78</td>
+                        <td>65.50</td>
+                        <td><strong>47.75</strong></td>
+                        <td>42.44</td>
+                        <td>68.04</td>
+                        <td>65.10</td>
+                    </tr>
+                    <tr>
+                        <td>CoOp </td>
+                        <td>93.70</td>
+                        <td>89.14</td>
+                        <td>64.51</td>
+                        <td>68.71</td>
+                        <td>85.30</td>
+                        <td>18.47</td>
+                        <td>64.15</td>
+                        <td>41.92</td>
+                        <td>46.39</td>
+                        <td>66.55</td>
+                        <td>63.88</td>
+                    </tr>
+                    <tr>
+                        <td>CoCoOp </td>
+                        <td>93.79</td>
+                        <td>90.46</td>
+                        <td>64.90</td>
+                        <td>70.85</td>
+                        <td>83.97</td>
+                        <td>22.29</td>
+                        <td>66.89</td>
+                        <td>45.45</td>
+                        <td>39.23</td>
+                        <td>68.44</td>
+                        <td>64.63</td>
+                    </tr>
+                    <tr>
+                        <td>MaPLe </td>
+                        <td>93.53</td>
+                        <td>90.49</td>
+                        <td>65.57</td>
+                        <td>72.23</td>
+                        <td>86.20</td>
+                        <td>24.74</td>
+                        <td>67.01</td>
+                        <td>46.49</td>
+                        <td style="font-weight: bold">48.06</td>
+                        <td>68.69</td>
+                        <td>66.30</td>
+                    </tr>
+                    <tr>
+                        <td>MaPLe+TPT </td>
+                        <td>93.59</td>
+                        <td>90.72</td>
+                        <td>66.50</td>
+                        <td>72.37</td>
+                        <td>86.64</td>
+                        <td>24.70</td>
+                        <td style="font-weight: bold">67.54</td>
+                        <td>45.87</td>
+                        <td>47.80</td>
+                        <td>69.19</td>
+                        <td>66.50</td>
+                    </tr>
+                    <tr>
+                        <td style="background-color: #e6e6e6">PromptAlign </td>
+                        <td style="background-color: #e6e6e6">94.01</td>
+                        <td style="background-color: #e6e6e6; font-weight: bold">90.76</td>
+                        <td style="background-color: #e6e6e6; font-weight: bold">68.50</td>
+                        <td style="background-color: #e6e6e6; font-weight: bold">72.39</td>
+                        <td style="background-color: #e6e6e6; font-weight: bold">86.65</td>
+                        <td style="background-color: #e6e6e6; font-weight: bold">24.80</td>
+                        <td style="background-color: #e6e6e6; font-weight: bold">67.54</td>
+                        <td style="background-color: #e6e6e6">47.24</td>
+                        <td style="background-color: #e6e6e6">47.86</td>
+                        <td style="background-color: #e6e6e6; font-weight: bold">69.47</td>
+                        <td style="background-color: #e6e6e6; font-weight: bold">66.92</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <!--/ Results. -->
+    </section>
+
+    <section class="section" id="paper">
+        <div class="container is-mobile">
+            <div class="columns is-centered has-text-centered">
+                <div class="container content">
+                    <h2 class="title is-3">BibTeX</h2>
+                    <div id="bibtex" class="column has-text-justified is-centered">
+                        <!-- https://github.com/SaswatPadhi/prismjs-bibtex -->
+                        <pre><code class="language-bibtex">@InProceedings{samadh2023align,
+    author    = {Samadh, Jameel Hassan Abdul and Gani, Hanan and Hussein, Noor Hazim and Khattak, Muhammad Uzair and Naseer, Muzammal and Khan, Fahad and Khan, Salman},
+    title     = {Align Your Prompts: Test-Time Prompting with Distribution Alignment for Zero-Shot Generalization},
+    booktitle = {Thirty-seventh Conference on Neural Information Processing Systems},
+    year      = {2023}
+}</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="footer">
+        <div class="container">
+            <div class="content has-text-centered">
+                <!-- TODO: UPDATE -->
+                <a class="icon-link" href="" target="_blank">
+                    <i class="ai ai-arxiv"></i>
+                </a>
+                &nbsp;
+                <!-- TODO: UPDATE -->
+                <a class="icon-link" href="./static/docs/AlignYourPrompts.pdf" target="_blank">
+                    <i class="fas fa-file-pdf"></i>
+                </a>
+                <!-- &nbsp;
+                <a class="icon-link" href="https://youtu.be/1hYtGZ0CUSA" target="_blank">
+                    <i class="fab fa-youtube"></i>
+                </a> -->
+                <!-- &nbsp;
+                <a class="icon-link" href="./static/docs/InternetExplorer.pptx" target="_blank">
+                    <i class="fas fa-file-powerpoint"></i>
+                </a> -->
+                &nbsp;
+                <a class="icon-link" href="https://github.com/jameelhassan/PromptAlign"
+                    target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+            <div class="columns is-centered">
+                <div class="content">
+                    <p>
+                        Page source code was adapted from
+                        <a href="https://nerfies.github.io" target="_blank">here</a>
+                        and
+                        <a href="https://internet-explorer-ssl.github.io"
+                            target="_blank">here</a>,
+                        and can be found in <a
+                            href="https://github.com/jameelhassan/jameelhassan.github.io/tree/master/promptalign"
+                            target="_blank">this repository</a>.
+                    </p>
+                </div>
+            </div>
+    </footer>
+
+    <script src="./static/js/index.js"></script>
+    <script src="./static/js/prism.js"></script>
+</body>
+
+</html>
